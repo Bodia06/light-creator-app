@@ -1,5 +1,11 @@
 @tailwind base;
+@tailwind components;
 @tailwind utilities;
+
+:root {
+	--font-sans-serif: 'Geist', ui-sans-serif, system-ui, sans-serif,
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
 
 html,
 body,
@@ -148,4 +154,15 @@ hr {
 input,
 select {
 	vertical-align: middle;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: var(--font-sans-serif);
+	line-height: 1.5;
+	color: #333;
+	background-color: #f9f9f9;
 }
