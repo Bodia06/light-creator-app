@@ -29,6 +29,12 @@ export default function TakeRail () {
   }
 
   const handlerNextPage = () => {
+    const selectedData = {
+      color: activeColor,
+      assemblyId: assemblyIdActive,
+      typeCode: activeTypeCode
+    }
+    localStorage.setItem('selectedRail', JSON.stringify(selectedData))
     router.push(`${PATHNAME_VALUES.konfiguration}`)
   }
 
@@ -66,7 +72,6 @@ export default function TakeRail () {
           ></button>
         </div>
       </div>
-
       <div className='w-[650px] flex-none flex flex-col'>
         <h2 className='w-full text-[20px] font-[medium] mb-[20px]'>
           Wybierz sposób montażu
@@ -82,7 +87,6 @@ export default function TakeRail () {
           ))}
         </ul>
       </div>
-
       <div className='w-[650px] flex flex-col'>
         <h2 className='w-full text-[20px] font-[medium] mb-[20px]'>
           Wybierz typ szyny

@@ -18,40 +18,40 @@ export default function HelpNavigation ({ onClose }) {
           className='w-[24px] h-[24px] cursor-pointer relative bg-transparent border-0 after:content-[""] after:inline-block after:w-[15px] after:h-[1px] after:bg-[#000] after:rotate-45 after:absolute after:top-[50%] after:translate-y-[-50%] after:right-[50%] after:translate-x-[50%] before:content-[""] before:w-[15px] before:h-[1px] before:bg-[#000] before:inline-block before:rotate-[-45deg] before:absolute before:top-[50%] before:translate-y-[-50%] before:right-[50%] before:translate-x-[50%]'
         ></button>
       </div>
-      <div className='flex w-full flex-col gap-[10px] mb-[10px]'>
-        <h2 className='text-[16px] font-[bold]'>Pomoc i poradnik</h2>
-        <p className='text-[13px] font-[bold] text-[#b0acac]'>Warto wiedzić</p>
+      <div className='flex w-full flex-col gap-[10px]'>
+        <h2 className='text-[18px] font-[bold]'>Pomoc i poradnik</h2>
+        <p className='text-[15px] font-[bold] text-[#b0acac]'>Warto wiedzić</p>
       </div>
       <ul className='flex flex-col gap-[10px] p-[20px]'>
-        <li className='text-[17px] text-justify font-normal'>
+        <li className='text-[15px] text-justify'>
           Każdą konfigurację można zapisać na przyszłość i/lub udostępnić
         </li>
-        <li className='text-[17px] text-justify font-normal'>
+        <li className='text-[15px] text-justify'>
           Szyny są dostarczane w odcinkach 1 m, 2 m lub 3 m, które trzeba
           przyciąć samodzielnie. W celu optymizacji skontaktuj się z
           dystrybutоrem.
         </li>
-        <li className='text-[17px] text-justify font-normal'>
+        <li className='text-[15px] text-justify'>
           Podczas konfiguracji szyny należy pamiętać, że pokazany jest widok
           powierzchni sufitu (od góry).
         </li>
-        <li className='text-[17px] text-justify font-normal'>
+        <li className='text-[15px] text-justify'>
           Skontaktuj się z nami pod numerem 516-753-660 lub przez e-mail
           hello@loonari.eu, jeśli potrzebujesz pomocy.
         </li>
       </ul>
-      <div className='flex flex-col w-full h-full'>
+      <div className='flex flex-col w-full h-full gap-[10px]'>
         <h2 className='text-[16px] font-[bold]'>Klucz</h2>
         <div className='grid grid-cols-2 gap-[15px] w-full'>
           <div className='flex items-center gap-[10px]'>
             <button className='flex justify-center items-center text-[20px] p-[10px_20px] cursor-pointer rounded-[5px] border-[1px] border-[#000] bg-[#fff]'>
-              <AiOutlineRotateLeft />
+              <FiRotateCcw />
             </button>
             <h3 className='text-[#908f8f] font-[light]'>Cofnij</h3>
           </div>
           <div className='flex items-center gap-[10px]'>
             <button className='flex justify-center items-center text-[20px] p-[10px_20px] cursor-pointer rounded-[5px] border-[1px] border-[#000] bg-[#fff]'>
-              <AiOutlineRotateRight />
+              <FiRotateCw />
             </button>
             <h3 className='text-[#908f8f] font-[light]'>Wykonaj ponownie</h3>
           </div>
@@ -69,13 +69,13 @@ export default function HelpNavigation ({ onClose }) {
           </div>
           <div className='flex items-center gap-[10px]'>
             <button className='flex justify-center items-center text-[20px] p-[10px_20px] cursor-pointer rounded-[5px] border-[1px] border-[#000] bg-[#fff]'>
-              <FiRotateCcw />
+              <AiOutlineRotateLeft />
             </button>
             <h3 className='text-[#908f8f] font-[light]'>Obróć w lewo</h3>
           </div>
           <div className='flex items-center gap-[10px]'>
             <button className='flex justify-center items-center text-[20px] p-[10px_20px] cursor-pointer rounded-[5px] border-[1px] border-[#000] bg-[#fff]'>
-              <FiRotateCw />
+              <AiOutlineRotateRight />
             </button>
             <h3 className='text-[#908f8f] font-[light]'>Obróć w prawo</h3>
           </div>
