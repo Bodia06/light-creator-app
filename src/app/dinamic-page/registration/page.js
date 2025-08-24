@@ -7,7 +7,7 @@ import { saveUserData } from '@/firebase/config'
 import countryCodes from '@/constans/countryCodes'
 import TiArrowUnsorted from '@/images/TiArrowUnsorted'
 
-export default function Registartion ({ setIsLooking }) {
+export default function Registartion ({ setIsLooking, setIsOpeningContant }) {
   const handleClose = () => {
     setIsLooking(false)
   }
@@ -30,6 +30,7 @@ export default function Registartion ({ setIsLooking }) {
       console.error('Error saving user data:', err)
     } finally {
       setSubmitting(false)
+      setIsOpeningContant(true)
     }
   }
 
