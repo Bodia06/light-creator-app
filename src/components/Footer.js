@@ -2,7 +2,7 @@
 import { PATHNAME_VALUES } from '@/constans/pathNames'
 import { usePathname, useRouter } from 'next/navigation'
 
-export default function Footer () {
+export default function Footer ({ setIsLooking }) {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -17,6 +17,8 @@ export default function Footer () {
   const handleNextPage = () => {
     if (pathname == `${PATHNAME_VALUES.konfiguration}`) {
       router.push(`${PATHNAME_VALUES.binding}`)
+    } else if (pathname == `${PATHNAME_VALUES.result}`) {
+      setIsLooking(true)
     } else {
       router.push(`${PATHNAME_VALUES.result}`)
     }
@@ -50,7 +52,7 @@ export default function Footer () {
           onClick={handleNextPage}
           className='flex p-[5px_10px] font-[bold] bg-[#000] border-[1px] border-[#000] text-[#fff] text-[15px] rounded-[10px] cursor-pointer hover:opacity-[0.8]'
         >
-          Dalej
+          {pathname === '/result' ? 'Podsumowanie' : 'Dalej'}
         </button>
       </div>
     </div>

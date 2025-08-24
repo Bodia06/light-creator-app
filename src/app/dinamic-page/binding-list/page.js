@@ -1,5 +1,4 @@
 'use client'
-
 import BindingListItems from '@/components/BindingEl/BindingListItems'
 
 export default function BindingList ({ close, elemnets, addItem }) {

@@ -6,10 +6,24 @@ import { takeData } from '@/firebase/config'
 import SelectedItemContainer from '@/components/BindingEl/SelectedItemContainer'
 import Footer from '@/components/Footer'
 
-export default function Binding () {
-  const [isOpening, setIsOpening] = useState(false)
+export default function TakeBinding () {
   const [bindingData, setBindingData] = useState([])
   const [selectedItems, setSelectedItems] = useState([])
+  const [isOpening, setIsOpening] = useState(false)
+
+  useEffect(() => {
+    const stored = localStorage.getItem('selectedItems')
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored)
+        if (Array.isArray(parsed)) {
+          setSelectedItems(parsed)
+        }
+      } catch (e) {
+        console.error('Помилка парсингу localStorage', e)
+      }
+    }
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,14 +33,21 @@ export default function Binding () {
     fetchData()
   }, [])
 
-  const handleClickOpenAddProduct = () => {
-    setIsOpening(!isOpening)
-  }
+  const handleClickOpenAddProduct = () => setIsOpening(!isOpening)
 
   const handleAddItem = item => {
-    const newItem = { ...item, _uniqueId: `${Date.now()}-${Math.random()}` }
+    const newItem = {
+      ...item,
+      _uniqueId: `${Date.now()}-${Math.random()}`,
+      count: 0,
+      selectedValues: item.Type?.map(() => '') || []
+    }
     setSelectedItems(prev => [...prev, newItem])
     setIsOpening(false)
+  }
+
+  const handleRemoveItem = uniqueId => {
+    setSelectedItems(prev => prev.filter(item => item._uniqueId !== uniqueId))
   }
 
   return (
@@ -40,17 +61,14 @@ export default function Binding () {
           Dodaj produkt
         </button>
 
-        {selectedItems.map(item => (
-          <SelectedItemContainer
-            key={item._uniqueId}
-            item={item}
-            onRemove={() => {
-              setSelectedItems(prev =>
-                prev.filter(i => i._uniqueId !== item._uniqueId)
-              )
-            }}
-          />
-        ))}
+        {selectedItems.length > 0 &&
+          selectedItems.map(item => (
+            <SelectedItemContainer
+              key={item._uniqueId}
+              item={item}
+              onRemove={handleRemoveItem}
+            />
+          ))}
 
         {isOpening && (
           <BindingList

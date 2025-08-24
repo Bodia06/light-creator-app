@@ -112,4 +112,20 @@ const saveAllData = () => {
   )
 }
 
-export { saveAllData, takeData }
+const saveUserData = async (userId, firstName, lastName, phone, email) => {
+  const userRef = ref(db, `users/${userId}`)
+  try {
+    await set(userRef, {
+      id: userId,
+      firstName,
+      lastName,
+      phone,
+      email
+    })
+    console.log(`User ${userId} saved successfully.`)
+  } catch (err) {
+    console.error('Error saving user data:', err)
+  }
+}
+
+export { saveAllData, takeData, saveUserData }
