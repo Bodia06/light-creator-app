@@ -15,11 +15,15 @@ export default function Footer () {
   }
 
   const handleNextPage = () => {
-    router.push(`${PATHNAME_VALUES.binding}`)
+    if (pathname == `${PATHNAME_VALUES.konfiguration}`) {
+      router.push(`${PATHNAME_VALUES.binding}`)
+    } else {
+      router.push(`${PATHNAME_VALUES.result}`)
+    }
   }
 
   return (
-    <div className='flex justify-between items-center p-[20px] border-t-[1px] border-[solid] border-[#d7d7d7] h-[90px] fixed bottom-[0px] left-[0px] right-[0px]'>
+    <div className='flex justify-between items-center p-[20px] border-t-[1px] border-[solid] border-[#d7d7d7] h-[90px] fixed bottom-[0px] left-[0px] right-[0px] z-[10] bg-[#fff]'>
       <p className='text-[17px] text-[#6c6c6c]'>
         Potrzebujesz pomocy? Skontaktuj się z nami tel.{' '}
         <a className='no-underline text-[#6c6c6c]' href='tel:727930530'>

@@ -1,7 +1,8 @@
 'use client'
-import AssemblyItem from '@/components/AssemblyItem'
-import AssemblyTypes from '@/components/AssemblyTypes'
+import AssemblyItem from '@/components/railEl/AssemblyItem'
+import AssemblyTypes from '@/components/railEl/AssemblyTypes'
 import { PATHNAME_VALUES } from '@/constans/pathNames'
+import { takeData } from '@/firebase/config'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -12,15 +13,30 @@ export default function TakeRail () {
   const [activeTypeCode, setActiveTypeCode] = useState('')
   const router = useRouter()
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const assemblies = await takeData('assembly')
+      setAssemblyData(assemblies)
+      if (assemblies.length > 0) {
+        const firstAssembly = assemblies[0]
+        setAssemblyIdActive(firstAssembly.Id)
+        if (firstAssembly.Type && firstAssembly.Type.length > 0) {
+          setActiveTypeCode(firstAssembly.Type[0].code)
+        }
+      }
+    }
+    fetchData()
+  }, [])
+
   const handlerTakeColor = color => {
     setActiveColor(color)
   }
 
   const handlerActiveAssembly = id => {
     setAssemblyIdActive(id)
-    const assembly = assemblyData.find(item => item.id === id)
-    if (assembly && assembly.type.length > 0) {
-      setActiveTypeCode(assembly.type[0].code)
+    const assembly = assemblyData.find(item => item.Id === id)
+    if (assembly && assembly.Type.length > 0) {
+      setActiveTypeCode(assembly.Type[0].code)
     }
   }
 
@@ -37,21 +53,6 @@ export default function TakeRail () {
     localStorage.setItem('selectedRail', JSON.stringify(selectedData))
     router.push(`${PATHNAME_VALUES.konfiguration}`)
   }
-
-  useEffect(() => {
-    fetch('/data/assemblyData.json')
-      .then(res => res.json())
-      .then(data => {
-        setAssemblyData(data)
-        if (data.length > 0) {
-          setAssemblyIdActive(data[0].id)
-          if (data[0].type.length > 0) {
-            setActiveTypeCode(data[0].type[0].code)
-          }
-        }
-      })
-      .catch(err => console.error('Error fetching data:', err))
-  }, [])
 
   return (
     <div className='flex flex-col items-center w-full p-[40px] gap-[40px] bg-[#e3e2e2] relative'>
@@ -79,10 +80,10 @@ export default function TakeRail () {
         <ul className='w-full flex gap-[20px]'>
           {assemblyData.map(item => (
             <AssemblyItem
-              key={item.id}
+              key={item.Id}
               item={item}
-              isActive={assemblyIdActive === item.id}
-              onClick={() => handlerActiveAssembly(item.id)}
+              isActive={assemblyIdActive === item.Id}
+              onClick={() => handlerActiveAssembly(item.Id)}
             />
           ))}
         </ul>
@@ -93,8 +94,8 @@ export default function TakeRail () {
         </h2>
         <ul className='w-full flex gap-[20px]'>
           {assemblyData
-            .filter(item => item.id === assemblyIdActive)
-            .flatMap(item => item.type)
+            .filter(item => item.Id === assemblyIdActive)
+            .flatMap(item => item.Type)
             .map(type => (
               <AssemblyTypes
                 key={type.code}

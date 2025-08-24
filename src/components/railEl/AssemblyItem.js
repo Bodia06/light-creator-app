@@ -1,5 +1,5 @@
 export default function AssemblyItem ({ item, isActive, onClick }) {
-  const { name, srcImg, alt } = item
+  const { Name, SrcImg } = item
 
   return (
     <li
@@ -12,11 +12,11 @@ export default function AssemblyItem ({ item, isActive, onClick }) {
     >
       <img
         className='w-[200px] h-[200px] object-cover object-center'
-        src={srcImg}
-        alt={alt}
+        src={SrcImg}
+        alt={`${Name} image`}
       />
       <div className='flex items-center mb-[20px]'>
-        <h2 className='text-[16px] font-[medium]'>{name}</h2>
+        <h2 className='text-[16px] font-[medium]'>{Name}</h2>
       </div>
     </li>
   )

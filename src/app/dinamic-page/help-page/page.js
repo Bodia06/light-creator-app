@@ -11,7 +11,7 @@ import React from 'react'
 
 export default function HelpNavigation ({ onClose }) {
   return (
-    <div className='fixed inset-[0px] bg-[#fff] z-[50] flex flex-col max-w-[350px] p-[20px]'>
+    <div className='fixed inset-[0px] bg-[#fff] z-[50] flex flex-col max-w-[350px] p-[20px] gap-[20px]'>
       <div className='flex w-full justify-end'>
         <button
           onClick={onClose}
@@ -23,19 +23,19 @@ export default function HelpNavigation ({ onClose }) {
         <p className='text-[15px] font-[bold] text-[#b0acac]'>Warto wiedzić</p>
       </div>
       <ul className='flex flex-col gap-[10px] p-[20px]'>
-        <li className='text-[15px] text-justify'>
+        <li className='text-[17px] text-justify'>
           Każdą konfigurację można zapisać na przyszłość i/lub udostępnić
         </li>
-        <li className='text-[15px] text-justify'>
+        <li className='text-[17px] text-justify'>
           Szyny są dostarczane w odcinkach 1 m, 2 m lub 3 m, które trzeba
           przyciąć samodzielnie. W celu optymizacji skontaktuj się z
           dystrybutоrem.
         </li>
-        <li className='text-[15px] text-justify'>
+        <li className='text-[17px] text-justify'>
           Podczas konfiguracji szyny należy pamiętać, że pokazany jest widok
           powierzchni sufitu (od góry).
         </li>
-        <li className='text-[15px] text-justify'>
+        <li className='text-[17px] text-justify'>
           Skontaktuj się z nami pod numerem 516-753-660 lub przez e-mail
           hello@loonari.eu, jeśli potrzebujesz pomocy.
         </li>

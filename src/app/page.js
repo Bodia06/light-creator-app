@@ -1,10 +1,16 @@
 'use client'
 
 import { PATHNAME_VALUES } from '@/constans/pathNames'
+import { saveAllData } from '@/firebase/config'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Home () {
   const router = useRouter()
+
+  useEffect(() => {
+    saveAllData()
+  }, [])
 
   const handlerStart = () => {
     router.push(`${PATHNAME_VALUES.rail}`)
