@@ -45,13 +45,69 @@ const takeData = async nameData => {
   }
 }
 
+const createReactiveArray = (nameData, arr, typeKey = 'type') => {
+  const proxyHandler = {
+    set (target, prop, value) {
+      target[prop] = value
+      if (!isNaN(prop)) {
+        const item = target[prop]
+        saveData(
+          nameData,
+          item.id,
+          item.name,
+          item.srcImg,
+          item[typeKey] || item.settings
+        )
+      }
+      return true
+    }
+  }
+
+  const reactiveArr = new Proxy(arr, {
+    set (target, prop, value) {
+      target[prop] = value
+      if (!isNaN(prop)) {
+        const item = target[prop]
+        saveData(
+          nameData,
+          item.id,
+          item.name,
+          item.srcImg,
+          item[typeKey] || item.settings
+        )
+      }
+      return true
+    },
+    get (target, prop) {
+      return target[prop]
+    }
+  })
+
+  for (let i = 0; i < reactiveArr.length; i++) {
+    reactiveArr[i] = new Proxy(reactiveArr[i], proxyHandler)
+  }
+
+  return reactiveArr
+}
+
+export const ASSEMBLY_REACTIVE = createReactiveArray(
+  'assembly',
+  ASSEMBLY,
+  'type'
+)
+export const BINDING_REACTIVE = createReactiveArray(
+  'binding',
+  BINDING,
+  'settings'
+)
+
 const saveAllData = () => {
-  ASSEMBLY.forEach(item => {
+  ASSEMBLY_REACTIVE.forEach(item =>
     saveData('assembly', item.id, item.name, item.srcImg, item.type)
-  })
-  BINDING.forEach(item => {
+  )
+  BINDING_REACTIVE.forEach(item =>
     saveData('binding', item.id, item.name, item.srcImg, item.settings)
-  })
+  )
 }
 
 export { saveAllData, takeData }
