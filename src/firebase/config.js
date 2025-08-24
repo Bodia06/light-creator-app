@@ -16,13 +16,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getDatabase(app)
 
-const saveData = (nameData, id, name, src, type) => {
-  return set(ref(db, `${nameData}/` + id), {
-    Id: id,
-    Name: name,
-    SrcImg: src,
-    Type: type
-  })
+const saveData = async (nameData, id, name, src, type) => {
+  const itemRef = ref(db, `${nameData}/${id}`)
+  const snapshot = await get(itemRef)
+
+  if (snapshot.exists()) {
+    return set(itemRef, { Id: id, Name: name, SrcImg: src, Type: type })
+  } else {
+    return set(itemRef, { Id: id, Name: name, SrcImg: src, Type: type })
+  }
 }
 
 const takeData = async nameData => {
