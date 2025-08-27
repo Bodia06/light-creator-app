@@ -4,9 +4,9 @@ import HelpNavigation from '../dinamic-page/help-page/page'
 import Footer from '@/components/Footer'
 import DrawingField from '@/components/konfigurationEl/DrawingField'
 import ButtonNavDraw from '@/components/konfigurationEl/ButtonNavDraw'
-import SetConnector from '../dinamic-page/set-connector/page'
+import SetConnector from '@/components/konfigurationEl/SetConnector'
 import { CanvasProvider } from '@/context/CanvasContext'
-import SetLengthRail from '../dinamic-page/set-length-rail/page'
+import SetLengthRail from '@/components/konfigurationEl/SetLengthRail'
 
 export default function Konfiguration () {
   const [isActiveHelpPage, setIsActiveHelpPage] = useState(false)
