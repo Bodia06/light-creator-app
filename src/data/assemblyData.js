@@ -66,5 +66,3 @@ export const ASSEMBLY = [
     ]
   }
 ]
-
-export { ASSEMBLY }
