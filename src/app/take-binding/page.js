@@ -1,7 +1,7 @@
 'use client'
 import FaPlus from '@/images/FaPlus'
 import { useEffect, useState } from 'react'
-import BindingList from '../dinamic-page/binding-list/page'
+import BindingList from '@/components/BindingEl/BindingList'
 import { takeData } from '@/firebase/config'
 import SelectedItemContainer from '@/components/BindingEl/SelectedItemContainer'
 import Footer from '@/components/Footer'
